@@ -29,6 +29,12 @@ export const reqUpdateStatus = (productId, status) => ajax('/api/manage/product/
 // 获取商品分页列表
 export const reqProducts = (pageNum, pageSize) => ajax('/api/manage/product/list', {pageNum, pageSize})
 
+// 获取一个分类
+export const reqCategory = (categoryId) => ajax('/api/manage/category/info', {categoryId})
+
+// 删除指定名称的图片
+export const reqDeleteImg = (name) => ajax('/api/manage/img/delete', {name}, 'POST')
+
 /*
 搜索商品分页列表 (根据商品名称/商品描述)
 searchType: 搜索的类型, productName/productDesc
@@ -38,6 +44,9 @@ export const reqSearchProducts = ({pageNum, pageSize, searchName, searchType}) =
     pageSize,
     [searchType]: searchName,
   })
+
+  // 添加/修改商品
+export const reqAddOrUpdateProduct = (product) => ajax('/api/manage/product/' + ( product._id?'update':'add'), product, 'POST')
 
 
 /**
